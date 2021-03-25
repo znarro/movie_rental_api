@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+u = User.create(name: 'Zamir', email: 'zamir@tekton.com')
+Category.create(name: 'Drama', description: 'Some description')
+Movie.create({ name: 'The Godfather',
+               director: 'Francis Ford Coppola',
+               release_date: '14/03/1972',
+               category: Category.first })
+u.rentals.create(movie: Movie.first, is_rented: true)
