@@ -1,24 +1,6 @@
-# README
+# Rails Movie Rental API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Hosted in Heroku: https://afternoon-brushlands-40101.herokuapp.com/
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Postman API docs
+[Link](https://documenter.getpostman.com/view/13844241/TzCJf9gY)
