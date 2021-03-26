@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   # Associations
-  has_many :rentals
-  has_many :movies, through: :rentals
+  has_many :movies
 
   # Validations
   validates :name, presence: true, uniqueness: true

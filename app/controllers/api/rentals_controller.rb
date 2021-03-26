@@ -1,48 +1,43 @@
 class Api::RentalsController < ApplicationController
-  before_action :set_rental, only: [:show, :update, :destroy]
+  before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @rentals = User.find(params[:user_id]).rentals
-    render json: @rentals
+    @user = User.find(params[:user_id])
+    @movies = @user.movies
+    render json: @movies
   end
 
   def show
-    @user = User.find(params[:user_id])
-    @rental = @user.rentals.find(params[:id])
-    render json: @rental
+    render json: @movie
   end
 
   def create
     @user = User.find(params[:user_id])
-    @rental = @user.rentals.new(rental_params)
+    @movie = Movie.where(user_id: nil).find_by(id: movie_params[:movie_id])
 
-    if @rental.save
-      render json: @rental, status: :created
+    if @movie.blank?
+      render json: 'This movie is rented!'
     else
-      render json: @rental.errors, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    if @rental.update(rental_params)
-      render json: @rental
-    else
-      render json: @rental.errors, status: :unprocessable_entity
+      if @movie.update(user: @user)
+        render json: @movie
+      else
+        render json: @movie.errors, status: :unprocessable_entity
+      end
     end
   end
 
   def destroy
-    @rental.destroy
+    @movie.update(user_id: nil)
   end
 
   private
 
-  def set_rental
+  def set_movie
     @user = User.find(params[:user_id])
-    @rental = @user.rentals.find(params[:id])
+    @movie = @user.movies.find(params[:id])
   end
 
-  def rental_params
-    params.require(:rental).permit(:user_id, :movie_id)
+  def movie_params
+    params.require(:rental).permit(:movie_id)
   end
 end

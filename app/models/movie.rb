@@ -1,8 +1,7 @@
 class Movie < ApplicationRecord
   # Associations
   belongs_to :category
-  has_many :rentals
-  has_many :users, through: :rentals
+  belongs_to :user, optional: true
 
   # Validations
   validates :name, presence: true, uniqueness: true
