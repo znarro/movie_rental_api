@@ -13,16 +13,19 @@ Category.create(name: 'Comedy', description: 'Some description')
 Movie.create({ name: 'The Godfather',
                director: 'Francis Ford Coppola',
                release_date: '14/03/1972',
+               is_rented: false,
                category: Category.first })
 Movie.create({ name: 'Superbad',
                director: 'Greg Mottola',
                release_date: '12/10/2007',
+               is_rented: false,
                category: Category.last })
 Movie.create({ name: 'Sound of Metal',
                director: 'Darius Marder',
                release_date: '06/09/2019',
+               is_rented: false,
                category: Category.last })
-u.rentals.create(movie: Movie.first, is_rented: true)
-y.rentals.create(movie: Movie.find_by(id: 2), is_rented: true)
-u.rentals.create(movie: Movie.last, is_rented: true)
+u.rentals.create(movie: Movie.first)
+y.rentals.create(movie: Movie.find_by(id: 2))
+u.rentals.create(movie: Movie.last)
 
